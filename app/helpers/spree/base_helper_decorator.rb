@@ -1,5 +1,10 @@
 module Spree
  module BaseHelperDecorator 
+
+    def self.prepended(base)
+
+    end
+  
     def pin_it_button(product)
       return if product.images.empty?
 
@@ -29,4 +34,6 @@ module Spree
     end
   end
 end
-::Spree::BaseHelper.prepend(Spree::BaseHelperDecorator)
+# ::Spree::BaseHelper.prepend(Spree::BaseHelperDecorator)
+
+::Spree::BaseHelper.prepend Spree::BaseHelperDecorator if ::Spree::BaseHelper.included_modules.exclude?(Spree::BaseHelperDecorator)
